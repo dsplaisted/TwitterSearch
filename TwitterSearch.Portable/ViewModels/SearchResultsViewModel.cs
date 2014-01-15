@@ -20,7 +20,8 @@ namespace TwitterSearch.Portable.ViewModels
 
    
 
-        public SearchResultsViewModel(INavigationService navigationService, IPlatformAdaptor platformAdapter, IAuthInformation authInformation)
+        public SearchResultsViewModel(INavigationService navigationService,
+            IPlatformAdaptor platformAdapter, IAuthInformation authInformation)
             : base(navigationService)
         {
 

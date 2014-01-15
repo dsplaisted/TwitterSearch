@@ -15,11 +15,6 @@
         
         <converters:BooleanToVisibilityConverter x:Key="Visibility"/>
         <converters:HighQualityTwitterConverter x:Key="HighQualityTwitter"/>
-        
-        <!-- Collection of items displayed by this page -->
-        <CollectionViewSource
-        x:Name="itemsViewSource"
-        Source="{Binding Tweets}"/>
 
         <DataTemplate x:Key="NonStandard250x250ItemTemplate">
             <Grid HorizontalAlignment="Left" Width="250" Height="250">
@@ -89,7 +84,7 @@
             TabIndex="1"
             Grid.RowSpan="2"
             Padding="116,136,116,46"
-            ItemsSource="{Binding Source={StaticResource itemsViewSource}}"
+            ItemsSource="{Binding Tweets}"
             SelectionMode="Single"
             IsSwipeEnabled="false"
             ItemTemplate="{StaticResource NonStandard250x250ItemTemplate}"
