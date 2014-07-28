@@ -35,6 +35,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Infrastructure\IResolver.cs" />
+    <Compile Include="Infrastructure\NavigationService.cs" />
     <Compile Include="Models\AuthInformation.cs" />
     <Compile Include="Models\IAuthInformation.cs" />
     <Compile Include="Models\Tweet.cs" />
@@ -45,6 +47,9 @@
     <Compile Include="ViewModels\SearchResultsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\..\packages\Autofac.3.5.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Budgie">
       <HintPath>..\..\packages\Budgie.3.0.0\lib\portable-windows8+net45+windowsphone8\Budgie.dll</HintPath>
     </Reference>

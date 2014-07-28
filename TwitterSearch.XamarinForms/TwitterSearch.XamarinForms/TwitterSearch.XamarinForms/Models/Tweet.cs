@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TwitterSearch.Portable.Models
+namespace TwitterSearch.Models
 {
     public class Tweet
     {

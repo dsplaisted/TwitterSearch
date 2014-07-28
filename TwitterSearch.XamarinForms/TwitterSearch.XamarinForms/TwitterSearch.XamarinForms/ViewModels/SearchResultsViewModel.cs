@@ -8,9 +8,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using TwitterSearch.Infrastructure;
-using TwitterSearch.Portable.Models;
+using TwitterSearch.Models;
 
-namespace TwitterSearch.Portable.ViewModels
+namespace TwitterSearch.ViewModels
 {
     public class SearchResultsViewModel : BaseViewModel
     {
