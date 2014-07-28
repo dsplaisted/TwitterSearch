@@ -20,7 +20,7 @@ namespace TwitterSearch.Portable.ViewModels
         {
             _navigationService = navigationService;
             //PickRandomSearchTerm();
-            SearchText = "MvvmCross";
+            SearchText = "mvvm";
         }
 
         string _searchText;

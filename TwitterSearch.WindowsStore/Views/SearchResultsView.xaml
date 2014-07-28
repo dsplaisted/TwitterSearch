@@ -88,7 +88,7 @@
             SelectionMode="Single"
             IsSwipeEnabled="false"
             ItemTemplate="{StaticResource NonStandard250x250ItemTemplate}"
-            SelectedItem="{Binding SelectedTweet, Mode=TwoWay}"
+            SelectedItem="{Binding SelectedTweet, Mode=TwoWay}" Margin="0,1,0,-1"
             >
             
         </GridView>
