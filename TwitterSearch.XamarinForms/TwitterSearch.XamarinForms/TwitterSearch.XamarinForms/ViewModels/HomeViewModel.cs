@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,7 @@ namespace TwitterSearch.ViewModels
 
         void Search()
         {
+            Debug.WriteLine("Searching...");
             Task ignore =_navigationService.NavigateToAsync<SearchResultsViewModel>(SearchText);
         }
 

@@ -15,6 +15,8 @@ namespace TwitterSearch.Views
 
         public HomeView()
         {
+            Title = "TwitterSearch";
+
             _searchText = new Entry() { Placeholder = "Search for..." };
             _searchText.SetBinding(Entry.TextProperty, "SearchText");
 

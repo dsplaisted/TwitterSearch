@@ -47,6 +47,7 @@ namespace TwitterSearch.Infrastructure
         protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] String propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(storage, value))
+                return false;
 
             storage = value;
             this.OnPropertyChanged(propertyName);

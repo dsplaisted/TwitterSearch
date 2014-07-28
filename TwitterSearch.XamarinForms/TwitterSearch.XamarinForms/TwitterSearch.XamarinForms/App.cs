@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,18 +35,22 @@ namespace TwitterSearch
     {
         private IContainer _container;
 
-        public NavigationPage Start()
+        public Page Start()
         {
-            NavigationPage ret = new NavigationPage();
+            
 
-            NavigationService navigationService = new NavigationService(ret, this);
+            NavigationService navigationService = new NavigationService(this);
             navigationService.Register(typeof(HomeViewModel), typeof(HomeView));
+            navigationService.Register(typeof(SearchResultsViewModel), typeof(SearchResultsView));
 
             var builder = new ContainerBuilder();
 
             builder.RegisterType<HomeViewModel>().SingleInstance();
-            builder.RegisterType<SearchResultsViewModel>().SingleInstance();
             builder.RegisterType<HomeView>();
+            builder.RegisterType<SearchResultsViewModel>().SingleInstance();
+            builder.RegisterType<SearchResultsView>();
+
+            builder.RegisterType<Sha1Hasher>().As<Budgie.IPlatformAdaptor>().SingleInstance();
             
 
             builder.RegisterInstance(this).As<IResolver>();
@@ -57,14 +62,20 @@ namespace TwitterSearch
 
             _container = builder.Build();
 
-            navigationService.NavigateToAsync<HomeViewModel>();
-            
-            return ret;
+            return navigationService.Init(typeof(HomeViewModel));
         }
 
         public object Resolve(Type type)
         {
-            return _container.Resolve(type);
+            try
+            {
+                return _container.Resolve(type);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Unable to resolve type: " + type.FullName + Environment.NewLine + ex.ToString());
+                throw;
+            }
         }
     }
 

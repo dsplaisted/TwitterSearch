@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,14 @@ namespace TwitterSearch.Infrastructure
 {
     class NavigationService : INavigationService
     {
-        readonly NavigationPage _navigation;
         readonly IResolver _resolver;
 
         readonly Dictionary<Type, Type> _vmToViewMap = new Dictionary<Type, Type>();
 
-        public NavigationService(NavigationPage navigationPage, IResolver resolver)
+        NavigationPage _navigationPage;
+
+        public NavigationService(IResolver resolver)
         {
-            _navigation = navigationPage;
             _resolver = resolver;
         }
 
@@ -25,25 +26,68 @@ namespace TwitterSearch.Infrastructure
             _vmToViewMap.Add(viewModelType, viewType);
         }
 
-        public async Task<TViewModel> NavigateToAsync<TViewModel>(string navigationParameter = null)
-            where TViewModel : BaseViewModel
+        void CreateViewAndViewModel(Type viewModelType, out Page view, out BaseViewModel viewModel, string navigationParameter)
         {
             // Get the matching view for this view model
             Type viewType;
-            if (!_vmToViewMap.TryGetValue(typeof(TViewModel), out viewType))
-                throw new ArgumentException("No view mapping found for " + typeof(TViewModel).FullName);
+            if (!_vmToViewMap.TryGetValue(viewModelType, out viewType))
+                throw new ArgumentException("No view mapping found for " + viewModelType.FullName);
 
-            Page viewPage = (Page)_resolver.Resolve(viewType);
+            view = (Page)_resolver.Resolve(viewType);
 
-            BaseViewModel viewModel = (BaseViewModel)_resolver.Resolve(typeof(TViewModel));
+            viewModel = (BaseViewModel)_resolver.Resolve(viewModelType);
             viewModel.Navigated(navigationParameter);
 
-            viewPage.BindingContext = viewModel;
+            view.BindingContext = viewModel;
 
-            await _navigation.PushAsync(viewPage);
+            Debug.WriteLine("End of CreateViewAndViewModel");
 
-            return (TViewModel) viewModel;
+        }
+
+        //public async Task<TViewModel> NavigateToAsync<TViewModel>(string navigationParameter = null)
+        public Task NavigateToAsync<TViewModel>(string navigationParameter = null)
+            where TViewModel : BaseViewModel
+        {
+            //// Get the matching view for this view model
+            //Type viewType;
+            //if (!_vmToViewMap.TryGetValue(typeof(TViewModel), out viewType))
+            //    throw new ArgumentException("No view mapping found for " + typeof(TViewModel).FullName);
+
+            //Page viewPage = (Page)_resolver.Resolve(viewType);
+
+            //BaseViewModel viewModel = (BaseViewModel)_resolver.Resolve(typeof(TViewModel));
+            //viewModel.Navigated(navigationParameter);
+
+            //viewPage.BindingContext = viewModel;
+
+            if (_navigationPage == null)
+            {
+                throw new InvalidOperationException("Navigation not initialized.");
+            }
+
+            Page viewPage;
+            BaseViewModel viewModel;
+            CreateViewAndViewModel(typeof(TViewModel), out viewPage, out viewModel, navigationParameter);
+
+            Debug.WriteLine("About to navigate");
+            //await _navigationPage.PushAsync(viewPage);
+            //Debug.WriteLine("Navigated");
+            //return (TViewModel) viewModel;
+
+            return _navigationPage.PushAsync(viewPage);
             
+        }
+
+        public NavigationPage Init(Type rootViewModelType)
+        {
+            Page viewPage;
+            BaseViewModel viewModel;
+            CreateViewAndViewModel(rootViewModelType, out viewPage, out viewModel, null);
+
+            var ret = new NavigationPage(viewPage);
+            _navigationPage = ret;
+
+            return ret;
         }
     }
 }
