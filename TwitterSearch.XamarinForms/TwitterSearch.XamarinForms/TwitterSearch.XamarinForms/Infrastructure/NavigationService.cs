@@ -9,14 +9,14 @@ namespace TwitterSearch.Infrastructure
 {
     class NavigationService : INavigationService
     {
-        readonly INavigation _navigation;
+        readonly NavigationPage _navigation;
         readonly IResolver _resolver;
 
         readonly Dictionary<Type, Type> _vmToViewMap = new Dictionary<Type, Type>();
 
-        public NavigationService(INavigation navigation, IResolver resolver)
+        public NavigationService(NavigationPage navigationPage, IResolver resolver)
         {
-            _navigation = navigation;
+            _navigation = navigationPage;
             _resolver = resolver;
         }
 

@@ -45,6 +45,7 @@
     <Compile Include="Infrastructure\BaseViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\SearchResultsViewModel.cs" />
+    <Compile Include="Views\HomeView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac">

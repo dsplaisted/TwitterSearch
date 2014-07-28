@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using TwitterSearch.Infrastructure;
 using TwitterSearch.Models;
 using TwitterSearch.ViewModels;
+using TwitterSearch.Views;
 using Xamarin.Forms;
 
 namespace TwitterSearch
@@ -15,43 +16,50 @@ namespace TwitterSearch
     {
         public static Page GetMainPage()
         {
-            return new ContentPage
-            {
-                Content = new Label
-                {
-                    Text = "Hello, Forms !",
-                    VerticalOptions = LayoutOptions.CenterAndExpand,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                },
-            };
+
+            return new TwitterSearchApplication().Start();
+            //return new ContentPage
+            //{
+            //    Content = new Label
+            //    {
+            //        Text = "Hello, Forms !",
+            //        VerticalOptions = LayoutOptions.CenterAndExpand,
+            //        HorizontalOptions = LayoutOptions.CenterAndExpand,
+            //    },
+            //};
         }
     }
 
-    public abstract class TwitterSearchApplication : IResolver
+    public class TwitterSearchApplication : IResolver
     {
         private IContainer _container;
 
-        protected abstract void RegisterPlatformTypes(ContainerBuilder builder);
-
-        public async virtual Task StartAsync()
+        public NavigationPage Start()
         {
+            NavigationPage ret = new NavigationPage();
+
+            NavigationService navigationService = new NavigationService(ret, this);
+            navigationService.Register(typeof(HomeViewModel), typeof(HomeView));
+
             var builder = new ContainerBuilder();
 
             builder.RegisterType<HomeViewModel>().SingleInstance();
             builder.RegisterType<SearchResultsViewModel>().SingleInstance();
+            builder.RegisterType<HomeView>();
             
 
             builder.RegisterInstance(this).As<IResolver>();
+            builder.RegisterInstance(navigationService).As<INavigationService>();
+            
 
             //  Register your app at dev.twitter.com, then create an implementation of IAuthInformation with your auth keys and secrets
             builder.RegisterType<AuthInformation>().SingleInstance().As<IAuthInformation>();
 
-            RegisterPlatformTypes(builder);
-
             _container = builder.Build();
 
-            //INavigationService navigation = _container.Resolve<INavigationService>();
-            //navigation.NavigateTo<HomeViewModel>();
+            navigationService.NavigateToAsync<HomeViewModel>();
+            
+            return ret;
         }
 
         public object Resolve(Type type)

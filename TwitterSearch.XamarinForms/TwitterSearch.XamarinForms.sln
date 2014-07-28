@@ -195,9 +195,9 @@ Global
 		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|ARM.Deploy.0 = Debug|ARM
 		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|Mixed Platforms.Deploy.0 = Debug|Any CPU
 		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|x86.ActiveCfg = Debug|x86
 		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|x86.Build.0 = Debug|x86
 		{7FE68EAE-EF8D-41C6-A4A8-766067120597}.Debug|x86.Deploy.0 = Debug|x86
