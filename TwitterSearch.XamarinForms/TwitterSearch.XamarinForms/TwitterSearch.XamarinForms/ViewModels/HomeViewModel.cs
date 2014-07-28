@@ -42,7 +42,7 @@ namespace TwitterSearch.ViewModels
 
         void Search()
         {
-            _navigationService.NavigateTo<SearchResultsViewModel>(SearchText);
+            Task ignore =_navigationService.NavigateToAsync<SearchResultsViewModel>(SearchText);
         }
 
         void PickRandomSearchTerm()

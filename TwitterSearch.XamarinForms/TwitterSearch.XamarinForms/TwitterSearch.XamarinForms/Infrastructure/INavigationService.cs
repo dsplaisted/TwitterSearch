@@ -8,7 +8,7 @@ namespace TwitterSearch.Infrastructure
 {
     public interface INavigationService
     {
-        void NavigateTo<TViewModel>(string navigationParameter = null)
+        Task<TViewModel> NavigateToAsync<TViewModel>(string navigationParameter = null)
             where TViewModel : BaseViewModel;
     }
 }

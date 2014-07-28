@@ -9,16 +9,41 @@ namespace TwitterSearch.Infrastructure
 {
     class NavigationService : INavigationService
     {
-        INavigation _navigation;
+        readonly INavigation _navigation;
+        readonly IResolver _resolver;
 
-        public NavigationService(INavigation navigation)
+        readonly Dictionary<Type, Type> _vmToViewMap = new Dictionary<Type, Type>();
+
+        public NavigationService(INavigation navigation, IResolver resolver)
         {
             _navigation = navigation;
+            _resolver = resolver;
         }
 
-        public void NavigateTo<TViewModel>(string navigationParameter = null) where TViewModel : BaseViewModel
+        public void Register(Type viewModelType, Type viewType)
         {
-            throw new NotImplementedException();
+            _vmToViewMap.Add(viewModelType, viewType);
+        }
+
+        public async Task<TViewModel> NavigateToAsync<TViewModel>(string navigationParameter = null)
+            where TViewModel : BaseViewModel
+        {
+            // Get the matching view for this view model
+            Type viewType;
+            if (!_vmToViewMap.TryGetValue(typeof(TViewModel), out viewType))
+                throw new ArgumentException("No view mapping found for " + typeof(TViewModel).FullName);
+
+            Page viewPage = (Page)_resolver.Resolve(viewType);
+
+            BaseViewModel viewModel = (BaseViewModel)_resolver.Resolve(typeof(TViewModel));
+            viewModel.Navigated(navigationParameter);
+
+            viewPage.BindingContext = viewModel;
+
+            await _navigation.PushAsync(viewPage);
+
+            return (TViewModel) viewModel;
+            
         }
     }
 }

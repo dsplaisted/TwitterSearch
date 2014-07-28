@@ -50,8 +50,8 @@ namespace TwitterSearch
 
             _container = builder.Build();
 
-            INavigationService navigation = _container.Resolve<INavigationService>();
-            navigation.NavigateTo<HomeViewModel>();
+            //INavigationService navigation = _container.Resolve<INavigationService>();
+            //navigation.NavigateTo<HomeViewModel>();
         }
 
         public object Resolve(Type type)
