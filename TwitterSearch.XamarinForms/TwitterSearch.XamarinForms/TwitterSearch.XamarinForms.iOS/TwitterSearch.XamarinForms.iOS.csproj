@@ -11,7 +11,7 @@
     <RootNamespace>TwitterSearch.XamarinForms.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>FormsTemplateiOS</AssemblyName>
-    <NuGetPackageImportStamp>41a21e4b</NuGetPackageImportStamp>
+    <NuGetPackageImportStamp>2c070b8b</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,11 +98,13 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.27-beta\lib\monotouch\System.Net.Http.Extensions.dll</HintPath>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.28\lib\monotouch\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.27-beta\lib\monotouch\System.Net.Http.Primitives.dll</HintPath>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.28\lib\monotouch\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -110,27 +112,27 @@
     <Reference Include="Validation">
       <HintPath>..\..\packages\Validation.2.0.4.14103\lib\portable-windows8+net40+sl5+wp8+wpa81+wp81+MonoAndroid+MonoTouch\Validation.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Core">
-      <HintPath>..\..\packages\Xamarin.Forms.1.0.6186\lib\MonoTouch10\Xamarin.Forms.Core.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Core, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoTouch10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Platform.iOS">
-      <HintPath>..\..\packages\Xamarin.Forms.1.0.6186\lib\MonoTouch10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Platform.iOS, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoTouch10\Xamarin.Forms.Platform.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="Xamarin.Forms.Xaml">
-      <HintPath>..\..\packages\Xamarin.Forms.1.0.6186\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
+    <Reference Include="Xamarin.Forms.Xaml, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Xamarin.Forms.1.2.2.6243\lib\MonoTouch10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
-  <Import Project="..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.1.0.6186\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+    <Error Condition="!Exists('..\..\packages\Xamarin.Forms.1.2.2.6243\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Xamarin.Forms.1.2.2.6243\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets'))" />
   </Target>
-  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
-  </Target>
+  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\..\packages\Xamarin.Forms.1.2.2.6243\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.2.2.6243\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10\Xamarin.Forms.targets')" />
 </Project>
