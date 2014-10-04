@@ -15,7 +15,8 @@ namespace TwitterSearch.Views
 
             var listView = new ListView
             {
-                //RowHeight = 80
+                //RowHeight = 300,
+                HorizontalOptions = LayoutOptions.Fill
             };
 
             listView.HasUnevenRows = true;
@@ -37,74 +38,50 @@ namespace TwitterSearch.Views
                 image.SetBinding(Image.SourceProperty, new Binding("ProfileImageUrl"));
                 image.WidthRequest = image.HeightRequest = 40;
 
-
-                //var image = new BoxView()
-                //{
-                //    HorizontalOptions = LayoutOptions.Start,
-                //    VerticalOptions = LayoutOptions.Start,
-                //    BackgroundColor = Color.Red
-                //};
-                //image.WidthRequest = image.HeightRequest = 40;
-
-                //var imageBorder = new Frame()
-                //{
-                //    Content = image,
-                //    //Content = textLayout,
-                //    OutlineColor = Color.Red
-                //};
-
                 var user = new Label()
                 {
-                    HorizontalOptions = LayoutOptions.StartAndExpand,
-                    VerticalOptions = LayoutOptions.StartAndExpand,
+                    HorizontalOptions = LayoutOptions.Fill,
+                    VerticalOptions = LayoutOptions.Start,
                     Font = Font.SystemFontOfSize(NamedSize.Large)
                 };
                 user.SetBinding(Label.TextProperty, "Author");
 
                 var tweetText = new Label()
                 {
-                    HorizontalOptions = LayoutOptions.StartAndExpand,
-                    VerticalOptions = LayoutOptions.StartAndExpand,
-                    //HeightRequest = 100
+                    HorizontalOptions = LayoutOptions.Fill,
+                    VerticalOptions = LayoutOptions.Start,
                 };
                 tweetText.SetBinding(Label.TextProperty, "Text");
 
                 var textLayout = new StackLayout()
                 {
                     Orientation = StackOrientation.Vertical,
-                    HorizontalOptions = LayoutOptions.StartAndExpand,
-                    VerticalOptions = LayoutOptions.StartAndExpand,
+                    HorizontalOptions = LayoutOptions.Fill,
+                    VerticalOptions = LayoutOptions.Start,
                     Children = { user, tweetText }
                 };
 
-                //var horizontal = new StackLayout()
+                //var viewLayout = new StackLayout()
                 //{
                 //    Orientation = StackOrientation.Horizontal,
-                //    HorizontalOptions = LayoutOptions.FillAndExpand,
-                //    VerticalOptions = LayoutOptions.StartAndExpand,
-                //    //MinimumHeightRequest = 100,
-                //    //MinimumWidthRequest = 100,
-                //    Children = { image, textLayout },
-                //    Padding = new Thickness(0, 5)
+                //    HorizontalOptions = LayoutOptions.Fill,
+                //    Children = { image, textLayout},
+                //    Padding = new Thickness(0, 5),
+                //    //WidthRequest = 200
                 //};
 
-                //var textLayout2 = new StackLayout()
-                //{
-                //    Orientation = StackOrientation.Vertical,
-                //    HorizontalOptions = LayoutOptions.StartAndExpand,
-                //    VerticalOptions = LayoutOptions.StartAndExpand,
-                //    Children = { image, textLayout }
-                //};
-
-                
-
-                var viewLayout = new StackLayout()
+                //var viewLayout = new RelativeLayout();
+                //viewLayout.Children.Add(image, Constraint.Constant(0),Constraint.Constant(0))
+                var viewLayout = new Grid()
                 {
-                    Orientation = StackOrientation.Horizontal,
-                    //HorizontalOptions = LayoutOptions.StartAndExpand,
-                    Children = { image, textLayout},
-                    Padding = new Thickness(0, 5)
+                    ColumnDefinitions = {
+                        new ColumnDefinition { Width = new GridLength(40)},
+                        new ColumnDefinition { Width = GridLength.Auto}
+                    },
+                    RowDefinitions = { new RowDefinition { Height = GridLength.Auto} }
                 };
+                viewLayout.Children.Add(image, 0, 0);
+                viewLayout.Children.Add(textLayout, 1, 0);
 
                 this.View = viewLayout;
 
