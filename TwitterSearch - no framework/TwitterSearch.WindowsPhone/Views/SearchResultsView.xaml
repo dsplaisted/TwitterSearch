@@ -13,6 +13,63 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="TwitterItemTemplate">
+            <Grid
+                toolkit:TiltEffect.IsTiltEnabled="True"
+                Width="440"
+                >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Source="{Binding ProfileImageUrl}"
+                                        Margin="0,12,0,0"
+                                        Width="55"
+                                        Height="55"
+                                        HorizontalAlignment="Left"/>
+
+                <!--<Image
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Source="/appbar.favs.rest.png"
+                            Visibility="{Binding IsSaved, Converter={StaticResource Visibility}}"
+                            
+                    />-->
+
+                <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Foreground="{StaticResource PhoneSubtleBrush}"
+                        Margin="0,12,0,0"
+                        TextAlignment="Right"
+                        Style="{StaticResource PhoneTextSmallStyle}"
+                        Text="{Binding Timestamp,Converter={StaticResource TimeAgo}}" />
+                <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Foreground="White"
+                                        Style="{StaticResource PhoneTextLargeStyle}"
+                                        Margin="0,0,0,0"
+                                        Text="{Binding Author}" />
+                <TextBlock
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        TextWrapping="Wrap"
+                                        Margin="0,0,0,0"
+                                        Text="{Binding Text}" />
+            </Grid>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>    
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
