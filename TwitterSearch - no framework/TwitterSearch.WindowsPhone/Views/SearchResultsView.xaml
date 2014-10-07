@@ -38,14 +38,6 @@
                                         Height="55"
                                         HorizontalAlignment="Left"/>
 
-                <!--<Image
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Source="/appbar.favs.rest.png"
-                            Visibility="{Binding IsSaved, Converter={StaticResource Visibility}}"
-                            
-                    />-->
-
                 <TextBlock
                         Grid.Row="2"
                         Grid.Column="1"

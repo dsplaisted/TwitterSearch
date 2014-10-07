@@ -21,11 +21,6 @@
                 <Border Background="Gray">
                     <Image Source="{Binding ProfileImageUrl, Converter={StaticResource HighQualityTwitter}}" Stretch="UniformToFill"/>
                 </Border>
-                <!--<Grid Width="40" Height="40" Margin="5" HorizontalAlignment="Left" VerticalAlignment="Top"
-                      Visibility="{Binding IsSaved, Converter={StaticResource Visibility}}"
-                      >
-                    <TextBlock Text="&#xE1CF;" FontFamily="Segoe UI Symbol" FontSize="20" Foreground="Yellow"/>
-                </Grid>-->
                 <StackPanel VerticalAlignment="Bottom" Background="#a0ffffff">
                     <TextBlock Text="{Binding Text}" Foreground="Black" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
                     <TextBlock Text="{Binding Author}" Foreground="Gray" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
