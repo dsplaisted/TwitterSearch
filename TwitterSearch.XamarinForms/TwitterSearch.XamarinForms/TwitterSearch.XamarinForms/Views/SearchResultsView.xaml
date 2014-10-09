@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TwitterSearch.SearchResultsView">
+	<ListView HorizontalOptions="Fill" HasUnevenRows="true"
+				ItemsSource="{Binding Tweets}">
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ViewCell>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="40"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<Image HorizontalOptions="Start" VerticalOptions="Start"
+								WidthRequest="40" HeightRequest="40"
+								Grid.Row="0" Grid.Column="0"
+								Source="{Binding ProfileImageUrl}"/>
+						<StackLayout Grid.Row="0" Grid.Column="1"
+									Orientation="Vertical"
+									HorizontalOptions="Fill"
+									VerticalOptions="Start">
+							<Label HorizontalOptions="Fill" VerticalOptions="Start"
+                  Font="Large"
+									Text="{Binding Author}"/>
+							<Label HorizontalOptions="Fill" VerticalOptions="Start"
+									Text="{Binding Text}"/>							
+						</StackLayout>
+					</Grid>
+				</ViewCell>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+</ContentPage>
