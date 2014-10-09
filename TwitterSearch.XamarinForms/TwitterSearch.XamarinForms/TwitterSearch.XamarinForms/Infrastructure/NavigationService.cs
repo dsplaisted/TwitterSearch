@@ -44,22 +44,9 @@ namespace TwitterSearch.Infrastructure
 
         }
 
-        //public async Task<TViewModel> NavigateToAsync<TViewModel>(string navigationParameter = null)
         public Task NavigateToAsync<TViewModel>(string navigationParameter = null)
             where TViewModel : BaseViewModel
         {
-            //// Get the matching view for this view model
-            //Type viewType;
-            //if (!_vmToViewMap.TryGetValue(typeof(TViewModel), out viewType))
-            //    throw new ArgumentException("No view mapping found for " + typeof(TViewModel).FullName);
-
-            //Page viewPage = (Page)_resolver.Resolve(viewType);
-
-            //BaseViewModel viewModel = (BaseViewModel)_resolver.Resolve(typeof(TViewModel));
-            //viewModel.Navigated(navigationParameter);
-
-            //viewPage.BindingContext = viewModel;
-
             if (_navigationPage == null)
             {
                 throw new InvalidOperationException("Navigation not initialized.");
@@ -70,9 +57,6 @@ namespace TwitterSearch.Infrastructure
             CreateViewAndViewModel(typeof(TViewModel), out viewPage, out viewModel, navigationParameter);
 
             Debug.WriteLine("About to navigate");
-            //await _navigationPage.PushAsync(viewPage);
-            //Debug.WriteLine("Navigated");
-            //return (TViewModel) viewModel;
 
             return _navigationPage.PushAsync(viewPage);
             
