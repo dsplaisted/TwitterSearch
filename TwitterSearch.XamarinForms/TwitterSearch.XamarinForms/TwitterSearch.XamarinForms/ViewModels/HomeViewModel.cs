@@ -19,7 +19,7 @@ namespace TwitterSearch.ViewModels
         {
             _navigationService = navigationService;
             //PickRandomSearchTerm();
-            SearchText = "mvvm";
+            SearchText = "Xamarin";
         }
 
         string _searchText;
@@ -49,7 +49,7 @@ namespace TwitterSearch.ViewModels
 
         void PickRandomSearchTerm()
         {
-            var items = new[] { "MvvmCross", "wpdev", "MonoTouch", "Xamarin", "mvvm", "kittens" };
+            var items = new[] { "MvvmCross", "Xamarin", "mvvm", "kittens" };
 
             var originalText = SearchText;
             var newText = originalText;
